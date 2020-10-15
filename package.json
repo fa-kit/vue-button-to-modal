@@ -1,0 +1,26 @@
+{
+  "name": "@fakit/vue-button-to-modal",
+  "version": "0.1.0",
+  "description": "Vue element with modal box for FA-Kit package.",
+  "main": "./src/VideoModalButton.vue",
+  "scripts": {
+    "build": "webpack --mode production",
+    "build:dev": "webpack --mode development --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fa-kit/vue-video-modal-button.git"
+  },
+  "keywords": [
+    "vue",
+    "video",
+    "modal",
+    "box"
+  ],
+  "author": "iAmStudio <info@i-am.studio>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fa-kit/vue-video-modal-button/issues"
+  },
+  "homepage": "https://github.com/fa-kit/vue-video-modal-button#readme"
+}
