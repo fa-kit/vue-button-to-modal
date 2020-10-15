@@ -35,8 +35,7 @@
             name="button-to-modal__modal-box"
             v-on:before-enter="calcBaseSize"
             v-on:enter="addOpenedClass"
-            v-on:before-leave="removeOpenedClass"
-            :duration="[8, 8]">
+            v-on:before-leave="removeOpenedClass">
             <div 
                 v-if="opened"
                 class="button-to-modal__modal-box"
@@ -58,6 +57,19 @@
 
 <script>
 export default {
+    /**
+     * Vue module ButtonToModal» for module that can open content including
+     *  video box.
+     * 
+     * @property {string} button           — HTML-tag, for example 'span'.
+     * @property {string} contentZIndex    — Class that will be assigned to button.
+     * @property {string} buttonClass      — Z-index for modal box to manage overlay of header and other components.
+     * @property {string} modalBoxClass    — Class for modal box wrapper.
+     * @property {string} contentClass     — Class for content wrapper.
+     * @property {slot} default            — Specified for button content. Can include image and any other HTML-elements.
+     * @property {slot} close              — Place here text\image\icon for close button.
+     * @property {slot} content            — Place here all content to show. Content might be styled.
+     */
     name: 'ButtonToModal',
     props: {
         button: {
@@ -85,6 +97,12 @@ export default {
     },
     mounted() {
         this.calcBaseSize();
+        document.addEventListener('scroll', this.calcBaseSize);
+        window.addEventListener('resize', this.calcBaseSize);
+    },
+    beforeDestroy() {
+        document.removeEventListener('scroll', this.calcBaseSize);
+        window.removeEventListener('resize', this.calcBaseSize);
     },
     methods: {
         calcBaseSize() {
@@ -96,7 +114,6 @@ export default {
             this.modalStyles.top = this.$refs.button.getBoundingClientRect().top + 'px';
             this.modalStyles.height = this.$refs.button.clientHeight + 'px';
             this.modalStyles.width = this.$refs.button.clientWidth + 'px';
-            console.log(this.modalStyles);
         },
         addOpenedClass(el) {
             /**
@@ -104,7 +121,7 @@ export default {
              */
             setTimeout(()=>{
                 el.classList.add('button-to-modal__modal-box--opened');
-            }, 1)
+            }, 100);
         },
         removeOpenedClass(el) {
             /**
@@ -177,7 +194,7 @@ $base-grid: 8px
         &-enter, &-leave-to
             transform: translate(100%, -100%)
     .button-to-modal__content
-        background-color: white
+        color: unset
         &-enter-active
             transition: all .3s .4s
         &-leave-active

@@ -1,6 +1,6 @@
 {
   "name": "@fakit/vue-button-to-modal",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Vue element with modal box for FA-Kit package.",
   "main": "./src/ButtonToModal.vue",
   "scripts": {
